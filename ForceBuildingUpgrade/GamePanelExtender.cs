@@ -2,7 +2,6 @@ using System;
 using System.Reflection;
 using ColossalFramework;
 using ColossalFramework.Math;
-using ColossalFramework.Steamworks;
 using ColossalFramework.UI;
 using UnityEngine;
 
@@ -10,9 +9,6 @@ namespace ForceLevelUp
 {
     public class GamePanelExtender : MonoBehaviour
     {
-        private static readonly MethodInfo StartUpgradingMethod = typeof(PrivateBuildingAI).GetMethod("StartUpgrading",
-        BindingFlags.NonPublic | BindingFlags.Instance);
-
         private bool _initialized;
         private ZonedBuildingWorldInfoPanel _zonedBuildingInfoPanel;
         private DistrictWorldInfoPanel _districtWorldInfoPanel;
@@ -122,30 +118,22 @@ namespace ForceLevelUp
 
         private static void LevelUpBuilding(ushort id)
         {
-            var building = Singleton<BuildingManager>.instance.m_buildings.m_buffer[id];
-            if (building.m_flags.IsFlagSet(Building.Flags.Upgrading))
+            if (Singleton<BuildingManager>.instance.m_buildings.m_buffer[id].m_flags.IsFlagSet(Building.Flags.Upgrading))
             {
                 return;
             }
-            var info = building.Info;
-            if (info == null)
-            {
-                return;
-            }
-            var ai = info.m_buildingAI;
+            var info = Singleton<BuildingManager>.instance.m_buildings.m_buffer[id].Info;
+            var ai = info?.m_buildingAI as PrivateBuildingAI;
             if (ai == null)
             {
                 return;
             }
 
-            if (!CanBuildingLevelUp(building))
+            if (!CanBuildingLevelUp(Singleton<BuildingManager>.instance.m_buildings.m_buffer[id]))
             {
                 return;
             }
-            var parameters = new object[] { id, building };
-
-            StartUpgradingMethod.Invoke(ai, parameters);
-            Singleton<BuildingManager>.instance.m_buildings.m_buffer[id] = (Building)parameters[1];
+            ai.StartUpgrading(id, ref Singleton<BuildingManager>.instance.m_buildings.m_buffer[id]);
         }
 
 

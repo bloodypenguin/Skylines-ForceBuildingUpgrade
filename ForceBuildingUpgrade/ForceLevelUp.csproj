@@ -49,7 +49,6 @@
     <Compile Include="GamePanelExtender.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UIUtil.cs" />
-    <Compile Include="UnityLoggingHook.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
