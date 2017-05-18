@@ -45,8 +45,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ForceLevelUp.cs" />
+    <Compile Include="LoadingExtension.cs" />
     <Compile Include="GamePanelExtender.cs" />
+    <Compile Include="Mod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UIUtil.cs" />
   </ItemGroup>

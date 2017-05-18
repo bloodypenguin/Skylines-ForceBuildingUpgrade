@@ -3,14 +3,14 @@ using UnityEngine;
 
 namespace ForceLevelUp
 {
-    public class ForceLevelUp : LoadingExtensionBase, IUserMod
+    public class LoadingExtension : LoadingExtensionBase
     {
         private static GameObject gameObject;
         
         public override void OnLevelLoaded(LoadMode mode)
         {
             base.OnLevelLoaded(mode);
-            if (mode != LoadMode.NewGame && mode != LoadMode.LoadGame)
+            if (mode != LoadMode.NewGame && mode != LoadMode.LoadGame && mode != LoadMode.NewGameFromScenario)
             {
                 return;
             }
@@ -35,14 +35,6 @@ namespace ForceLevelUp
             gameObject = null;
         }
 
-        public string Name
-        {
-            get { return "Force Level Up"; }
-        }
 
-        public string Description
-        {
-            get { return "Adds button to force buildings to level up"; }
-        }
     }
 }
