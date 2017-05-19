@@ -5,9 +5,9 @@ namespace ForceLevelUp
 {
     public static class UIUtil
     {
-        private const int ButtonSize = 24;
-        private static readonly Vector3 LevelUpButtonOffset = new Vector3(-72.0f, 8.0f, 0.0f);
-        private static readonly Vector3 SetOnFireButtonOffset = new Vector3(-100.0f, 8.0f, 0.0f);
+        private const int ButtonSize = 32;
+        private static readonly Vector3 LevelUpButtonOffset = new Vector3(-114.0f, 6.0f, 0.0f);
+        private static readonly Vector3 SetOnFireButtonOffset = new Vector3(-150.0f, 6.0f, 0.0f);
 
         public static UIButton CreateLevelUpButton(UIComponent parentComponent, MouseEventHandler handler)
         {
